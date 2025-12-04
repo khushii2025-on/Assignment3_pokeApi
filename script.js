@@ -10,15 +10,15 @@ async function fetchPokemon(searchValue) {
   const trimmed = String(searchValue).trim().toLowerCase();
   if (!trimmed) return;
 
-  // Show loading text
+  
   statusMessage.textContent = 'Loading Pokémon data...';
   resultDiv.innerHTML = '';
 
   try {
-    // Make the HTTP GET request
+    
     const response = await fetch(`${API_BASE_URL}${trimmed}`);
 
-    // Check if Pokémon exists
+    //  To check if the Pokémon exists
     if (!response.ok) {
       statusMessage.textContent = 'Pokémon not found. Try another name or ID.';
       resultDiv.innerHTML = '';
@@ -28,7 +28,7 @@ async function fetchPokemon(searchValue) {
     // Convert response stream to JSON
     const data = await response.json();
 
-    // Now we extract useful info from JSON
+    
     const name = data.name;
     const id = data.id;
     const spriteUrl = data.sprites.front_default;
@@ -42,7 +42,7 @@ async function fetchPokemon(searchValue) {
       value: statObj.base_stat
     }));
 
-    // Build small HTML chunks
+    
     const typeBadges = types
       .map(type => `<span class="badge type">${type}</span>`)
       .join(' ');
@@ -59,7 +59,7 @@ async function fetchPokemon(searchValue) {
     const heightMeters = (height / 10).toFixed(1); // decimetres -> metres
     const weightKg = (weight / 10).toFixed(1);     // hectograms -> kg
 
-    // Inject the final HTML into #result
+    
     resultDiv.innerHTML = `
       <article class="pokemon-card">
         <div class="pokemon-image">
