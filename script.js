@@ -111,3 +111,9 @@ async function fetchPokemon(searchValue) {
   }
 }
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // stop the page from refreshing
+  const value = input.value;
+  fetchPokemon(value);
+});
+
